@@ -38,6 +38,10 @@ namespace Ecommerce.Web.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Message = "Welcome To Index Page";
+            //data loaded code 
+            var products = _unitOfWork.ProductRepository.GetAll();
+            ViewBag.Products = products;
             return View();
         }
 
@@ -54,6 +58,11 @@ namespace Ecommerce.Web.Controllers
             {
                 _unitOfWork.ProductRepository.Add(product);
                 bool isSaved = _unitOfWork.SaveChanges();
+                if (isSaved)
+                {
+                   return RedirectToAction("Index");
+                }
+               
             }
 
             return View();

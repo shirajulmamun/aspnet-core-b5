@@ -1,16 +1,43 @@
-﻿@{
+﻿@using EcommerceApp.Entity_Models
+@{
     Layout = null;
-    int serialNo=0;
+    int serialNo = 0;
 }
 
 <!DOCTYPE html>
+
+@{
+    List<Product> products = ViewBag.Products;
+}
 
 <head>
     <title>Products</title>
 </head>
 <body>
-<div>
-    <h1> Welcome to my Products Page</h1>
-    
-</div>
+    <div>
+        <h1> Welcome to my Products Page</h1>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Code</th>
+                        <th>Price</th>
+                        <th>WH Loc</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in products)
+                    {
+                        <tr>
+                            <td>@product.Name</td>
+                            <td>@product.Code</td>
+                            <td>@product.Price</td>
+                            <td>@product.WarehouseLocation</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>

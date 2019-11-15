@@ -11,23 +11,30 @@
     <h1>
         Product Create
     </h1>
-    <div>
-        <form method="post">
-            <p>
-                Name: <input type="text" name="Name" />
-            </p>
-            <p>
-                Code: <input type="text" name="Code" />
-            </p>
-            <p>
-                Price: <input type="text" name="Price" />
-            </p>
-            <p>
-                Warehouse Location: <input type="text" name="WarehouseLocation" />
-            </p>
-            <p>
-                <input type="submit" value="Save" />
-            </p>
-        </form>
-    </div>
+<div>
+    @if (ViewBag.SuccessMessage != null)
+    {
+        <h4>
+            @ViewBag.SuccessMessage
+        </h4>
+    }
+    
+    <form method="post">
+        <p>
+            Name: <input type="text" name="Name"/>
+        </p>
+        <p>
+            Code: <input type="text" name="Code"/>
+        </p>
+        <p>
+            Price: <input type="text" name="Price"/>
+        </p>
+        <p>
+            Warehouse Location: <input type="text" name="WarehouseLocation"/>
+        </p>
+        <p>
+            <input type="submit" value="Save"/>
+        </p>
+    </form>
+</div>
 </body>
