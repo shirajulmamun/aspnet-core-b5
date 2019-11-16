@@ -94,7 +94,7 @@ namespace EcommerceApp.Repositories
 
         public ICollection<Product> GetAll()
         {
-            return _db.Products.ToList();
+            return _db.Products.Include(c=>c.Dokan).ToList();
         }
 
     }

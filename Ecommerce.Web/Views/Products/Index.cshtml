@@ -22,6 +22,7 @@
                         <th>Code</th>
                         <th>Price</th>
                         <th>WH Loc</th>
+                        <th>Dokan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,6 +33,7 @@
                             <td>@product.Code</td>
                             <td>@product.Price</td>
                             <td>@product.WarehouseLocation</td>
+                            <td>@(product.Dokan?.Name ?? "Not Assigned")</td>
                         </tr>
                     }
                 </tbody>

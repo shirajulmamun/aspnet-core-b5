@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Ecommerce.Library.DTO;
 using EcommerceApp.Entity_Models;
 using EcommerceApp.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Ecommerce.Web.Controllers
@@ -47,6 +50,14 @@ namespace Ecommerce.Web.Controllers
        
         public IActionResult Create()
         {
+            var shops = _unitOfWork.ShopRepository.GetAll();
+
+            ICollection<SelectListItem> items = shops.Select(c=> new SelectListItem()
+            {
+                Text = c.Name,
+                Value = c.Id.ToString()
+            }).ToList();
+            ViewBag.Shops = items;
             return View();
         }
 
