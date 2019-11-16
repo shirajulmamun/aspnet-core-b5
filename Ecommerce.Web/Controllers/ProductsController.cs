@@ -41,8 +41,7 @@ namespace Ecommerce.Web.Controllers
             ViewBag.Message = "Welcome To Index Page";
             //data loaded code 
             var products = _unitOfWork.ProductRepository.GetAll();
-            ViewBag.Products = products;
-            return View();
+            return View(products);
         }
 
        

@@ -1,14 +1,12 @@
-﻿@using EcommerceApp.Entity_Models
+﻿@model ICollection<EcommerceApp.Entity_Models.Product>
+
 @{
     Layout = null;
-    int serialNo = 0;
+    int serialNo = 0;    
 }
 
 <!DOCTYPE html>
 
-@{
-    List<Product> products = ViewBag.Products;
-}
 
 <head>
     <title>Products</title>
@@ -27,7 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var product in products)
+                    @foreach (var product in Model)
                     {
                         <tr>
                             <td>@product.Name</td>

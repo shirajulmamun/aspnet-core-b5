@@ -10,7 +10,7 @@ namespace EcommerceApp.Entity_Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please provide name!")]
         public string Name { get; set; }
 
         [StringLength(11)]

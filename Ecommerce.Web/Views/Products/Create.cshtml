@@ -1,4 +1,6 @@
-﻿@{
+﻿@model EcommerceApp.Entity_Models.Product
+
+@{
     Layout = null;
 }
 
@@ -6,35 +8,64 @@
 <!doctype html>
 <head>
     <title>Product Create</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>
-        Product Create
-    </h1>
-<div>
+    
+<div class="container">
     @if (ViewBag.SuccessMessage != null)
     {
         <h4>
             @ViewBag.SuccessMessage
         </h4>
     }
+   
     
     <form method="post">
-        <p>
-            Name: <input type="text" name="Name"/>
-        </p>
-        <p>
-            Code: <input type="text" name="Code"/>
-        </p>
-        <p>
-            Price: <input type="text" name="Price"/>
-        </p>
-        <p>
-            Warehouse Location: <input type="text" name="WarehouseLocation"/>
-        </p>
-        <p>
-            <input type="submit" value="Save"/>
-        </p>
+        <div class="row">
+            <div class="col-md-6 card">
+                <div class="card-header">
+                    <h4>
+                        Product Create
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="Name">Name</label>
+                        <input type="text" asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Code">Code</label>
+                        <input type="text" asp-for="Code" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price">Price</label>
+                        <input type="text" asp-for="Price" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="WarehouseLocation">WH Loc</label>
+                        <input type="text" asp-for="WarehouseLocation" class="form-control"/>
+                    </div>
+                    <div class="form-group align-content-center">
+                        <input type="submit" value="Save" class="btn btn-primary"/>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="col-md-6 card">
+                <div class="card-header">
+                    Product Info
+                </div>
+                <div class="card-body">
+                    Please Insert a Product Info from the left side form
+                </div>
+                <div class="card-footer">
+                    Thank you
+                </div>
+            </div>
+        </div>
+        
     </form>
 </div>
 </body>
