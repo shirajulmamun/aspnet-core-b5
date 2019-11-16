@@ -1,21 +1,15 @@
 ﻿@model ICollection<EcommerceApp.Entity_Models.Product>
 
 @{
-    Layout = null;
-    int serialNo = 0;    
+    Layout = "_MyLayout";
+     
 }
 
-<!DOCTYPE html>
 
-
-<head>
-    <title>Products</title>
-</head>
-<body>
     <div>
         <h1> Welcome to my Products Page</h1>
         <div>
-            <table>
+            <table class="table table-striped table-hover table-bordered table-responsive table-active">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -40,4 +34,3 @@
             </table>
         </div>
     </div>
-</body>
