@@ -17,6 +17,7 @@
 
     <!-- Custom styles for this template-->
     <link href="~/theme/css/sb-admin-2.min.css" rel="stylesheet">
+    @RenderSection("styles",false)
 
 </head>
 
@@ -394,6 +395,8 @@
     <!-- Page level custom scripts -->
     <script src="~/theme/js/demo/chart-area-demo.js"></script>
     <script src="~/theme/js/demo/chart-pie-demo.js"></script>
+
+    @RenderSection("scripts",false)
 
 </body>
 

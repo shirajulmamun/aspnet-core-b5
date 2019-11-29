@@ -78,5 +78,32 @@ namespace Ecommerce.Web.Controllers
             return View();
 
         }
+
+        public IActionResult ProductView()
+        {
+            var shops = _unitOfWork.ShopRepository.GetAll();
+
+            ICollection<SelectListItem> items = shops.Select(c => new SelectListItem()
+            {
+                Text = c.Name,
+                Value = c.Id.ToString()
+            }).ToList();
+            ViewBag.Shops = items;
+
+            return View();
+        }
+        
+        public IActionResult GetProductByShopId(int shopId)
+        {
+            var products = _unitOfWork.ProductRepository.GetByShopId(shopId);
+            return Json(products);
+        }
+
+        public IActionResult GetProductById(int productId)
+        {
+            var product = _unitOfWork.ProductRepository.GetById(productId);
+
+            return Json(product);
+        }
     }
 }

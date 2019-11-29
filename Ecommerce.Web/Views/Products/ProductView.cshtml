@@ -1,0 +1,96 @@
+﻿
+<div class="form-group">
+    <label for="DokanId">Dokan</label>
+    <select id="shopId" asp-items="ViewBag.Shops" class="form-control">
+        <option value="">Select...</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="productId">Product</label>
+    <select id="productId" class="form-control">
+        <option value="">Select...</option>
+    </select>
+</div>
+
+<div class="card" id="showBox">
+    <div class="card card-header">
+        Product Info
+    </div> 
+    <div id="showBoxBody" class="card card-body">
+
+
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+        $("#shopId").change(() => {
+
+            $('#showBoxBody').empty();
+
+            var shopId = $("#shopId").val();
+            var shopText = $("#shopId option:selected").text();
+
+            var jsonData = { shopId: shopId };
+            // server side -> request for products with this shopId 
+            $.ajax({
+                url: "/products/getproductByShopId",
+                type: "POST",
+                data: jsonData,
+                success: function (productList) {
+                    //render products as options
+                    $("#productId").empty();
+                    $("#productId").append("<option>Select...</option>");
+
+                    $.each(productList, function (key, product) {
+                        var option = '<option value="' + product.id + '">' + product.name + '</option>';
+
+                        $('#productId').append(option);
+
+                    })
+
+                },
+                error: function (errorResponse) {
+
+                }
+
+
+            });
+
+            
+          
+
+        });
+
+        $("#productId").change(() => {
+
+            var productId = $('#productId').val();
+
+            $('#showBoxBody').empty();
+
+            $.ajax({
+                url: "/products/getproductById",
+                type: "post",
+                data: { productId: productId },
+                success: function (product) {
+
+                    var body = "<p>Name: " + product.name+"</p>" ;
+                    body += "<p>Price: " + product.price + "</p>";
+                    body += "<p>Location: " + product.warehouseLocation + "</p>";
+
+                    $('#showBoxBody').html(body);
+
+                }
+
+            });
+
+
+        });
+
+    </script>
+}
+
+
+
