@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Ecommerce.Library.Entity_Models;
 using EcommerceApp.Entity_Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,9 @@ namespace EcommerceApp.DatabaseContext
         public DbSet<Customer> Customers { get; set; }
 
         public DbSet<Shop> Shops { get; set; }
+
+        public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
+        public DbSet<PurchaseOrderItem> PurchaseOrderItem { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

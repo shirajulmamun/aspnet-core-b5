@@ -1,6 +1,6 @@
 ﻿@model Ecommerce.Library.Entity_Models.PurchaseOrder
 
-<form>
+<form asp-action="Create" method="post">
 <div class="row ">
     <div class="col-md-6">
         <div class="form-group">
@@ -24,7 +24,7 @@
     <div class="col-md-4">
         <div class="form-group">
             <label for="productId">Product</label>
-            <select id="productId" class="form-control">
+            <select id="productId" asp-items="ViewBag.Products" class="form-control">
                 <option value="">Select...</option>
             </select>
         </div>
@@ -43,12 +43,10 @@
     </div>
     <div class="col-md-2 align-bottom">
         <div class="form-group">
-           <input type="button" value="Add Item" class="btn btn-success" />
+           <input id="btn_addItem" type="button" value="Add Item" class="btn btn-success" />
         </div>
     </div>
-</div>
-
-
+</div>    
 <div class="row">
     <div class="col-md-12">
         <table class="table table-striped table-hover table-bordered table-responsive-md">
@@ -64,20 +62,7 @@
                 </tr>
             </thead>
             <tbody id="tb_items">
-                <tr>
-                    <td>
-                        <input type="hidden" name="orderitems[0].productId" value="1"/>
-                        Lalmohon
-                    </td>
-                    <td>
-                        <input type="hidden" name="orderitems[0].qty" value="2" />
-                        2
-                    </td>
-                    <td>
-                        <input type="hidden" name="orderitems[0].remarks" value="good..." />
-                        Good...
-                    </td>
-                </tr>
+                
             </tbody>
         </table>
     </div>
@@ -89,3 +74,50 @@
 </div>
 
 </form>
+
+@section scripts{ 
+    <script>
+
+        var index = 0;
+
+        $('#btn_addItem').click(() => {
+
+            var inputData = getProductInputData();
+
+            var tr = "<tr>"
+            var td = "<td>";
+            var endTr = "</tr>";
+            var endTd = "</td>"
+
+            var productCell = '<input type="hidden" name="orderItems[' + index + '].productId" value="' + inputData.productId + '" />';
+             productCell += inputData.productName;
+            var  qtyCell = '<input type="hidden" name="orderItems[' + index + '].qty" value="' + inputData.qty + '" />';
+            qtyCell += inputData.qty;
+            var remarksCell = '<input type="hidden" name="orderItems[' + index + '].remarks" value="' + inputData.remarks + '" />';
+            remarksCell += inputData.remarks;
+
+            var row = tr;
+            row += td + productCell + endTd;
+            row += td + qtyCell + endTd;
+            row += td + remarksCell + endTd;
+            row += endTr;
+
+            $('#tb_items').append(row);
+
+            index++;
+
+        });
+
+        function getProductInputData() {
+            var productDD = $('#productId');
+
+            var productId = productDD.val();
+            var productName = productDD.children("option:selected").text();
+
+            var qty = $('#qty').val();
+            var remarks = $('#remarks').val();
+
+            return {productId:productId, productName:productName, qty:qty, remarks:remarks}
+        }
+    </script>
+}
