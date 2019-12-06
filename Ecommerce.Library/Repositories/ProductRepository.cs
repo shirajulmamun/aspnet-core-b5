@@ -48,7 +48,7 @@ namespace EcommerceApp.Repositories
 
         public Product GetById(int id)
         {
-            return _db.Products.Find(id);
+            return _db.Products.Include(c=>c.Dokan).FirstOrDefault(c=>c.Id==id);
         }
 
 
@@ -67,7 +67,7 @@ namespace EcommerceApp.Repositories
 
         public ICollection<Product> Search(ProductSearchCriteriaDTO criteria)
         {
-            var products = _db.Products.AsEnumerable();
+            var products = _db.Products.Include(c=>c.Dokan).AsEnumerable();
 
             if (!string.IsNullOrEmpty(criteria.Name))
             {
@@ -87,6 +87,11 @@ namespace EcommerceApp.Repositories
             {
                 products = products.Where(c => c.Price <= criteria.ToSalesPrice);
 
+            }
+
+            if (criteria.DokanId!=null && criteria.DokanId > 0)
+            {
+                products = products.Where(c => c.DokanId == criteria.DokanId);
             }
 
             return products.ToList();

@@ -33,11 +33,12 @@
             var shopId = $("#shopId").val();
             var shopText = $("#shopId option:selected").text();
 
-            var jsonData = { shopId: shopId };
+            var jsonData = { "dokanId": shopId };
             // server side -> request for products with this shopId 
             $.ajax({
-                url: "/products/getproductByShopId",
-                type: "POST",
+                url: "/api/products",
+                type: "GET",
+                accept: "application/json",
                 data: jsonData,
                 success: function (productList) {
                     //render products as options
@@ -69,9 +70,8 @@
             $('#showBoxBody').empty();
 
             $.ajax({
-                url: "/products/getproductById",
-                type: "post",
-                data: { productId: productId },
+                url: "/api/products/" + productId,
+                type: "GET",               
                 success: function (product) {
 
                     var body = "<p>Name: " + product.name+"</p>" ;
