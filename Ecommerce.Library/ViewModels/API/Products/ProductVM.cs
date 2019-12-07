@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Ecommerce.Library.ViewModels.API.Products
 {
+  
     public class ProductVM
     {
         public ProductVM()
@@ -19,6 +20,8 @@ namespace Ecommerce.Library.ViewModels.API.Products
 
 
     }
+
+
 
     public class DokanVM
     {

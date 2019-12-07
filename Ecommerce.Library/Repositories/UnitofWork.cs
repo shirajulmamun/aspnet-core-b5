@@ -6,20 +6,20 @@ using EcommerceApp.DatabaseContext;
 
 namespace EcommerceApp.Repositories
 {
-    public class UnitofWork
+    public class UnitofWork:IUnitOfWork
     {
         private EcommerceDbContext _db;
 
-        public UnitofWork()
+        public UnitofWork(EcommerceDbContext db)
         {
-            _db = new EcommerceDbContext();
+            _db = db;
         }
 
         private ProductRepository _productRepository;
         private ShopRepository _shopRepository;
         private PurchaseOrderRepository _purchaseOrderRepository;
 
-        public ProductRepository ProductRepository
+        ProductRepository IUnitOfWork.ProductRepository
         {
             get
             {
@@ -30,6 +30,7 @@ namespace EcommerceApp.Repositories
 
                 return _productRepository;
             }
+           
         }
 
         public ShopRepository ShopRepository
@@ -59,6 +60,7 @@ namespace EcommerceApp.Repositories
 
         }
 
+      
         public bool SaveChanges()
         {
             return _db.SaveChanges() > 0;

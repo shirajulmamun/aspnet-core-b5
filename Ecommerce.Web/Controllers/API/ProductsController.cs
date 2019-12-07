@@ -11,30 +11,30 @@ using System.Threading.Tasks;
 namespace Ecommerce.Web.Controllers.API
 {
     [Route("api/[controller]")]
-    public class ProductsController:ControllerBase
+    public class ProductsController : ControllerBase
     {
-        UnitofWork unitofWork;
-        public ProductsController()
+        IUnitOfWork _unitofWork;
+        public ProductsController(IUnitOfWork unitOfWOrk)
         {
-            unitofWork = new UnitofWork();
+            _unitofWork = unitOfWOrk;
         }
         public IEnumerable<ProductVM> Get(ProductSearchCriteriaDTO model)
         {
-            var products = 
-                unitofWork
+            var products =
+                _unitofWork
                 .ProductRepository
                 .Search(model)
-                .Select(c=> new ProductVM{
-                Id = c.Id,
-                Name = c.Name,
-                Price = c.Price,
-                WarehouseLocation=c.WarehouseLocation,
-                Dokan = new DokanVM {
-                    DokanId = c.DokanId,
-                    DokanName= c.Dokan?.Name
-                }
+                .Select(c => new ProductVM {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Price = c.Price,
+                    WarehouseLocation = c.WarehouseLocation,
+                    Dokan = new DokanVM {
+                        DokanId = c.DokanId,
+                        DokanName = c.Dokan?.Name
+                    }
 
-            });
+                });
 
             return products.ToList();
         }
@@ -42,9 +42,9 @@ namespace Ecommerce.Web.Controllers.API
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var product = unitofWork.ProductRepository.GetById(id);
+            var product = _unitofWork.ProductRepository.GetById(id);
 
-            if(product == null)
+            if (product == null)
             {
                 return NotFound();
             }
@@ -71,8 +71,8 @@ namespace Ecommerce.Web.Controllers.API
         {
             if (ModelState.IsValid)
             {
-                unitofWork.ProductRepository.Add(product);
-                bool isSuccess = unitofWork.SaveChanges();
+                _unitofWork.ProductRepository.Add(product);
+                bool isSuccess = _unitofWork.SaveChanges();
 
                 if (isSuccess)
                 {
@@ -81,5 +81,56 @@ namespace Ecommerce.Web.Controllers.API
             }
             return BadRequest(ModelState);
         }
+
+        [HttpPut]
+        public IActionResult Put([FromQuery] int id, [FromBody] Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingProduct = _unitofWork.ProductRepository.GetById(id);
+
+                if (existingProduct == null)
+                {
+                    return BadRequest("Product Not Found");
+                }
+
+                existingProduct.Name = product.Name;
+                existingProduct.Price = product.Price;
+                existingProduct.WarehouseLocation = product.WarehouseLocation;
+                existingProduct.DokanId = product.DokanId;
+
+
+                _unitofWork.ProductRepository.Update(existingProduct);
+                bool isUpdated = _unitofWork.SaveChanges();
+                if (isUpdated)
+                {
+                    return Ok();
+                }
+            }
+
+            return BadRequest("Bad Request");
+        }
+        [HttpDelete("{id}")]
+        public IActionResult Delete([FromQuery] int id)
+        {
+            var product = _unitofWork.ProductRepository.GetById(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _unitofWork.ProductRepository.Remove(product);
+            bool isDeleted = _unitofWork.SaveChanges();
+            if (isDeleted)
+            {
+                return Ok();
+            }
+
+            return BadRequest();
+        }
+
+
+
     }
 }

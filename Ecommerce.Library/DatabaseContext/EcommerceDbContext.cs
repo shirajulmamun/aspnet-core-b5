@@ -4,11 +4,21 @@ using System.Text;
 using Ecommerce.Library.Entity_Models;
 using EcommerceApp.Entity_Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace EcommerceApp.DatabaseContext
 {
     public class EcommerceDbContext:DbContext
     {
+        IConfiguration _configuration;
+
+        public EcommerceDbContext(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
+
+
         public DbSet<Product> Products { get; set; }
         public DbSet<Customer> Customers { get; set; }
 
@@ -19,8 +29,8 @@ namespace EcommerceApp.DatabaseContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = "Server=(local);Database=EcommerceDB5; Integrated Security=true";
-            optionsBuilder.UseSqlServer(connectionString);
+           var connString =  _configuration.GetConnectionString("AppConnectionString");
+           optionsBuilder.UseSqlServer(connString);
             //optionsBuilder.UseLazyLoadingProxies();
         }
 
