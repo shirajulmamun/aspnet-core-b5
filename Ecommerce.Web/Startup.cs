@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EcommerceApp.DatabaseContext;
-using EcommerceApp.Repositories;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -33,9 +32,7 @@ namespace Ecommerce.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddTransient<IUnitOfWork, UnitofWork>();
-            services.AddTransient<EcommerceDbContext>();
-
+            IoCContainer.IoCConfiguration.Configure(services);
             services.AddMvc()
                 .AddMvcOptions(option =>
                 {

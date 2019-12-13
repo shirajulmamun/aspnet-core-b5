@@ -4,4 +4,14 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="UnitofWork.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ecommerce.DatabaseContext\Ecommerce.DatabaseContext.csproj" />
+    <ProjectReference Include="..\Ecommerce.Models\Ecommerce.Models.csproj" />
+    <ProjectReference Include="..\Ecommerce.Repositories.Abstractions\Ecommerce.Repositories.Abstractions.csproj" />
+  </ItemGroup>
+
 </Project>

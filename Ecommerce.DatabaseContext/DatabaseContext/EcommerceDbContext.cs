@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Ecommerce.Library.Entity_Models;
-using EcommerceApp.Entity_Models;
+using Ecommerce.Models.EntityModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 

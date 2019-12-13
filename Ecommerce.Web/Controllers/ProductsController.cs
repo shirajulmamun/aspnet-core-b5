@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Ecommerce.Library.DTO;
-using EcommerceApp.Entity_Models;
-using EcommerceApp.Repositories;
+using Ecommerce.BLL.Abstractions.Contracts;
+
+using Ecommerce.Models.DTO;
+using Ecommerce.Models.EntityModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Internal;
@@ -12,15 +13,17 @@ namespace Ecommerce.Web.Controllers
 {
     public class ProductsController : Controller
     {
-        private UnitofWork _unitOfWork;
+        IProductManager _productManager;
+        IShopManager _shopManager;
 
-        public ProductsController()
+        public ProductsController(IProductManager productManager,IShopManager shopManager)
         {
-            _unitOfWork = new UnitofWork();
+            _productManager = productManager;
+            _shopManager = shopManager;
         }
         public string List(ProductSearchCriteriaDTO model)
         {
-            var products = _unitOfWork.ProductRepository.Search(model);
+            var products = _productManager.Search(model);
             string message =
                 $"Showing Products by Name: {model.Name ?? "N/A"} Code:{model.Code ?? "N/A"} From Price:{model.FromSalesPrice} To Price: {model.ToSalesPrice} \n";
 
@@ -43,14 +46,14 @@ namespace Ecommerce.Web.Controllers
         {
             ViewBag.Message = "Welcome To Index Page";
             //data loaded code 
-            var products = _unitOfWork.ProductRepository.GetAll();
+            var products = _productManager.GetAll();
             return View(products);
         }
 
        
         public IActionResult Create()
         {
-            var shops = _unitOfWork.ShopRepository.GetAll();
+            var shops = _shopManager.GetAll();
 
             ICollection<SelectListItem> items = shops.Select(c=> new SelectListItem()
             {
@@ -66,8 +69,7 @@ namespace Ecommerce.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.ProductRepository.Add(product);
-                bool isSaved = _unitOfWork.SaveChanges();
+               bool isSaved =  _productManager.Add(product);               
                 if (isSaved)
                 {
                    return RedirectToAction("Index");
@@ -81,7 +83,7 @@ namespace Ecommerce.Web.Controllers
 
         public IActionResult ProductView()
         {
-            var shops = _unitOfWork.ShopRepository.GetAll();
+            var shops = _shopManager.GetAll();
 
             ICollection<SelectListItem> items = shops.Select(c => new SelectListItem()
             {
@@ -95,13 +97,13 @@ namespace Ecommerce.Web.Controllers
         
         public IActionResult GetProductByShopId(int shopId)
         {
-            var products = _unitOfWork.ProductRepository.GetByShopId(shopId);
+            var products = _productManager.GetByShopId(shopId);
             return Json(products);
         }
 
         public IActionResult GetProductById(int productId)
         {
-            var product = _unitOfWork.ProductRepository.GetById(productId);
+            var product = _productManager.GetById(productId);
 
             return Json(product);
         }

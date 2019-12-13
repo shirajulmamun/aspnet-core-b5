@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ecommerce.Library.ViewModels.API.Products
+namespace Ecommerce.Models.ViewModels.API.Products
 {
   
     public class ProductVM

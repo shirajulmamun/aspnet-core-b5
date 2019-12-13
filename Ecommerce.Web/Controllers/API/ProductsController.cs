@@ -1,7 +1,8 @@
-﻿using Ecommerce.Library.DTO;
-using Ecommerce.Library.ViewModels.API.Products;
-using EcommerceApp.Entity_Models;
-using EcommerceApp.Repositories;
+﻿using Ecommerce.BLL.Abstractions.Contracts;
+
+using Ecommerce.Models.DTO;
+using Ecommerce.Models.EntityModels;
+using Ecommerce.Models.ViewModels.API.Products;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,17 +14,15 @@ namespace Ecommerce.Web.Controllers.API
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
-        IUnitOfWork _unitofWork;
-        public ProductsController(IUnitOfWork unitOfWOrk)
+        IProductManager _productManager;
+        public ProductsController(IProductManager _productManager)
         {
-            _unitofWork = unitOfWOrk;
+            _productManager = _productManager;
         }
         public IEnumerable<ProductVM> Get(ProductSearchCriteriaDTO model)
         {
             var products =
-                _unitofWork
-                .ProductRepository
-                .Search(model)
+                _productManager.Search(model)
                 .Select(c => new ProductVM {
                     Id = c.Id,
                     Name = c.Name,
@@ -42,7 +41,7 @@ namespace Ecommerce.Web.Controllers.API
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var product = _unitofWork.ProductRepository.GetById(id);
+            var product = _productManager.GetById(id);
 
             if (product == null)
             {
@@ -71,8 +70,7 @@ namespace Ecommerce.Web.Controllers.API
         {
             if (ModelState.IsValid)
             {
-                _unitofWork.ProductRepository.Add(product);
-                bool isSuccess = _unitofWork.SaveChanges();
+                bool isSuccess = _productManager.Add(product);
 
                 if (isSuccess)
                 {
@@ -87,7 +85,7 @@ namespace Ecommerce.Web.Controllers.API
         {
             if (ModelState.IsValid)
             {
-                var existingProduct = _unitofWork.ProductRepository.GetById(id);
+                var existingProduct = _productManager.GetById(id);
 
                 if (existingProduct == null)
                 {
@@ -100,8 +98,7 @@ namespace Ecommerce.Web.Controllers.API
                 existingProduct.DokanId = product.DokanId;
 
 
-                _unitofWork.ProductRepository.Update(existingProduct);
-                bool isUpdated = _unitofWork.SaveChanges();
+                bool isUpdated = _productManager.Update(existingProduct);
                 if (isUpdated)
                 {
                     return Ok();
@@ -113,15 +110,14 @@ namespace Ecommerce.Web.Controllers.API
         [HttpDelete("{id}")]
         public IActionResult Delete([FromQuery] int id)
         {
-            var product = _unitofWork.ProductRepository.GetById(id);
+            var product = _productManager.GetById(id);
 
             if (product == null)
             {
                 return NotFound();
             }
 
-            _unitofWork.ProductRepository.Remove(product);
-            bool isDeleted = _unitofWork.SaveChanges();
+            bool isDeleted = _productManager.Remove(product);
             if (isDeleted)
             {
                 return Ok();

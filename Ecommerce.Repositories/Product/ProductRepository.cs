@@ -1,17 +1,18 @@
-﻿using System;
+﻿using Ecommerce.Repositories.Abstract.Contracts;
+using Ecommerce.Repositories.Abstraction.Base;
+using EcommerceApp.DatabaseContext;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using EcommerceApp.Contracts;
-using EcommerceApp.DatabaseContext;
-using Ecommerce.Library.DTO;
-using EcommerceApp.Entity_Models;
-using Microsoft.EntityFrameworkCore;
-using Ecommerce.Library.Repositories;
+using Ecommerce.Models.EntityModels;
+using EcommerceApp.Models.Contracts;
+using Ecommerce.Models.DTO;
 
 namespace EcommerceApp.Repositories
 {
-    public class ProductRepository:Repository<Product>
+    public class ProductRepository:Repository<Product>,IProductRepository
     {
         private EcommerceDbContext _db;
 

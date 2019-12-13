@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace EcommerceApp.Entity_Models
+namespace Ecommerce.Models.EntityModels
 {
     public class Customer
     {

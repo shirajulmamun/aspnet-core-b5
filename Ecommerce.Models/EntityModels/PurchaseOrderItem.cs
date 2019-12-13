@@ -1,6 +1,6 @@
-﻿using EcommerceApp.Entity_Models;
+﻿
 
-namespace Ecommerce.Library.Entity_Models
+namespace Ecommerce.Models.EntityModels
 {
     public class PurchaseOrderItem
     {

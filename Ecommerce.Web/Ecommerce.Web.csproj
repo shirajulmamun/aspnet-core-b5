@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\ProductsController.cs" />
     <Compile Remove="Controllers\PurchaseOrderController.cs" />
   </ItemGroup>
 
@@ -18,7 +17,9 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\Ecommerce.Library\Ecommerce.Library.csproj" />
+    <ProjectReference Include="..\Ecommerce.BLL.Abstractions\Ecommerce.BLL.Abstractions.csproj" />
+    <ProjectReference Include="..\Ecommerce.IoCContainer\Ecommerce.IoCContainer.csproj" />
+    <ProjectReference Include="..\Ecommerce.Models\Ecommerce.Models.csproj" />
   </ItemGroup>
 
 </Project>

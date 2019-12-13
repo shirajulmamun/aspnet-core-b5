@@ -1,10 +1,11 @@
-﻿using System;
+﻿using EcommerceApp.Models.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using EcommerceApp.Contracts;
 
-namespace EcommerceApp.Entity_Models
+
+namespace Ecommerce.Models.EntityModels
 {
     public class Product:IDeleteable
     {

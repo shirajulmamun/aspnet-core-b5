@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ecommerce.Library.Entity_Models
+namespace Ecommerce.Models.EntityModels
 {
     public class PurchaseOrder
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EcommerceApp.Contracts
+namespace EcommerceApp.Models.Contracts
 {
    public interface IDeleteable
     {

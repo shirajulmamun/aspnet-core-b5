@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.Library.DTO
+﻿namespace Ecommerce.Models.DTO
 {
     public class ProductSearchCriteriaDTO
     {
