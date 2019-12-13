@@ -7,31 +7,22 @@ using EcommerceApp.DatabaseContext;
 using Ecommerce.Library.DTO;
 using EcommerceApp.Entity_Models;
 using Microsoft.EntityFrameworkCore;
+using Ecommerce.Library.Repositories;
 
 namespace EcommerceApp.Repositories
 {
-    public class ProductRepository
+    public class ProductRepository:Repository<Product>
     {
         private EcommerceDbContext _db;
 
-        public ProductRepository(EcommerceDbContext db)
+        public ProductRepository(DbContext db):base(db)
         {
-            _db = db;
+            _db = (EcommerceDbContext)db;
         }
-        public void Add(Product entity)
-        {
-            _db.Products.Add(entity);
-            //return _db.SaveChanges() > 0;
+      
+              
 
-        }
-
-        public void Update(Product entity)
-        {
-            _db.Entry(entity).State = EntityState.Modified;
-            //return _db.SaveChanges() > 0;
-        }
-
-        public void Remove(Product entity)
+        public override void Remove(Product entity)
         {
             if (entity is IDeleteable)
             {
@@ -46,7 +37,7 @@ namespace EcommerceApp.Repositories
             }
         }
 
-        public Product GetById(int id)
+        public override Product GetById(int id)
         {
             return _db.Products.Include(c=>c.Dokan).FirstOrDefault(c=>c.Id==id);
         }
@@ -97,7 +88,7 @@ namespace EcommerceApp.Repositories
             return products.ToList();
         }
 
-        public ICollection<Product> GetAll()
+        public override ICollection<Product> GetAll()
         {
             return _db.Products.Include(c=>c.Dokan).ToList();
         }
