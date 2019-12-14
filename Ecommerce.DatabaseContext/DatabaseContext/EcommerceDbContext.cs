@@ -9,15 +9,10 @@ namespace EcommerceApp.DatabaseContext
 {
     public class EcommerceDbContext:DbContext
     {
-        IConfiguration _configuration;
+        public EcommerceDbContext(DbContextOptions options):base(options)
+        { 
 
-        public EcommerceDbContext(IConfiguration configuration)
-        {
-            _configuration = configuration;
         }
-
-
-
         public DbSet<Product> Products { get; set; }
         public DbSet<Customer> Customers { get; set; }
 
@@ -27,16 +22,15 @@ namespace EcommerceApp.DatabaseContext
         public DbSet<PurchaseOrderItem> PurchaseOrderItem { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-           var connString =  _configuration.GetConnectionString("AppConnectionString");
-           optionsBuilder.UseSqlServer(connString);
+        {       
+          
             //optionsBuilder.UseLazyLoadingProxies();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Customer>().HasKey(c => c.Code);
-            modelBuilder.Entity<Customer>().ToTable("clients");
+            modelBuilder.Entity<Customer>().HasKey(c => c.Id);
+            modelBuilder.Entity<Customer>().ToTable("Customers");
 
             modelBuilder.Entity<Customer>()
                 .Property(c => c.Name)

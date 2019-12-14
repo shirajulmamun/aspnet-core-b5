@@ -1,5 +1,6 @@
 ﻿using Ecommerce.BLL;
 using Ecommerce.BLL.Abstractions.Contracts;
+using Ecommerce.Repositories;
 using Ecommerce.Repositories.Abstract.Contracts;
 using Ecommerce.Repositories.Abstractions.Contracts;
 using EcommerceApp.DatabaseContext;
@@ -22,6 +23,8 @@ namespace Ecommerce.IoCContainer
             services.AddTransient<IShopRepository, ShopRepository>();
             services.AddTransient<DbContext, EcommerceDbContext>();
             services.AddTransient<EcommerceDbContext>();
+            services.AddTransient<ICustomerManager,CustomerManager>();
+            services.AddTransient<ICustomerRepository,CustomerRepository>();
                 
         }
     }
