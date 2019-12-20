@@ -39,6 +39,26 @@ namespace Ecommerce.Web
 
             services.AddAutoMapper(typeof(Startup));
             IoCContainer.IoCConfiguration.Configure(services);
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "oidc";
+            })
+                .AddCookie("Cookies")
+                .AddOpenIdConnect("oidc", option =>
+                {
+                    option.Authority = "https://localhost:44381/";
+                    option.ClientId = "web_client";
+                    option.ClientSecret = "secret";
+                    option.SignInScheme = "Cookies";
+                    option.ResponseType = "code id_token";
+                    option.SaveTokens = true;
+                    option.RequireHttpsMetadata = true;
+                });
+
+
+
             services.AddMvc()
                 .AddMvcOptions(option =>
                 {
@@ -61,6 +81,7 @@ namespace Ecommerce.Web
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

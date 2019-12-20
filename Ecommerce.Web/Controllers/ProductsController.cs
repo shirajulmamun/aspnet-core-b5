@@ -7,12 +7,14 @@ using Ecommerce.BLL.Abstractions.Contracts;
 using Ecommerce.Models.DTO;
 using Ecommerce.Models.EntityModels;
 using Ecommerce.Models.ViewModels.Web.Product;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Ecommerce.Web.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         IProductManager _productManager;
