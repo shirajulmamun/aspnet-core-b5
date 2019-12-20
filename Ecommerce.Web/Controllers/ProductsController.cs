@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using Ecommerce.BLL.Abstractions.Contracts;
 
 using Ecommerce.Models.DTO;
 using Ecommerce.Models.EntityModels;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 namespace Ecommerce.Web.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         IProductManager _productManager;
@@ -42,8 +48,9 @@ namespace Ecommerce.Web.Controllers
             return message;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+           await WriteOutIdentityInformation();
             ViewBag.Message = "Welcome To Index Page";
             //data loaded code 
             var products = _productManager.GetAll();
@@ -108,6 +115,21 @@ namespace Ecommerce.Web.Controllers
             return Json(product);
         }
 
+
+        public async Task WriteOutIdentityInformation()
+        {
+
+            var identityToken = await AuthenticationHttpContextExtensions.GetTokenAsync(HttpContext, OpenIdConnectParameterNames.IdToken);
+
+            Debug.WriteLine($"Identity Token: {identityToken}");
+
+            foreach(var claim in User.Claims)
+            {
+                Debug.WriteLine($"Claim Type:  { claim.Type} - Claim Value: {claim.Value}");
+            }
+
+
+        }
         
     }
 }

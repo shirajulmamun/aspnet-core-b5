@@ -5,19 +5,21 @@ VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.Web", "Ecommerce.Web\Ecommerce.Web.csproj", "{D94CC5F9-9BDA-4E31-99B1-64118F31C37E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.BLL", "Ecommerce.BLL\Ecommerce.BLL.csproj", "{3B51B3CC-AD4E-4970-A390-5D764A01BB06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.BLL", "Ecommerce.BLL\Ecommerce.BLL.csproj", "{3B51B3CC-AD4E-4970-A390-5D764A01BB06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.BLL.Abstractions", "Ecommerce.BLL.Abstractions\Ecommerce.BLL.Abstractions.csproj", "{A132E0C8-E2D7-4B79-8983-DD3FF6A0C6F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.BLL.Abstractions", "Ecommerce.BLL.Abstractions\Ecommerce.BLL.Abstractions.csproj", "{A132E0C8-E2D7-4B79-8983-DD3FF6A0C6F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Repositories", "Ecommerce.Repositories\Ecommerce.Repositories.csproj", "{6F1200AD-E183-44C7-92A1-85CF0DD43B46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.Repositories", "Ecommerce.Repositories\Ecommerce.Repositories.csproj", "{6F1200AD-E183-44C7-92A1-85CF0DD43B46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Repositories.Abstractions", "Ecommerce.Repositories.Abstractions\Ecommerce.Repositories.Abstractions.csproj", "{4C731450-242F-4280-A992-E4E0131A205E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.Repositories.Abstractions", "Ecommerce.Repositories.Abstractions\Ecommerce.Repositories.Abstractions.csproj", "{4C731450-242F-4280-A992-E4E0131A205E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Models", "Ecommerce.Models\Ecommerce.Models.csproj", "{5B578A6D-6166-4E06-95FF-62BA467F58BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.Models", "Ecommerce.Models\Ecommerce.Models.csproj", "{5B578A6D-6166-4E06-95FF-62BA467F58BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.DatabaseContext", "Ecommerce.DatabaseContext\Ecommerce.DatabaseContext.csproj", "{0E5BCFE5-D8BE-46C8-9B9D-3043CF696FF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.DatabaseContext", "Ecommerce.DatabaseContext\Ecommerce.DatabaseContext.csproj", "{0E5BCFE5-D8BE-46C8-9B9D-3043CF696FF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.IoCContainer", "Ecommerce.IoCContainer\Ecommerce.IoCContainer.csproj", "{12A68398-716D-46E4-9620-129CB40DA8E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.IoCContainer", "Ecommerce.IoCContainer\Ecommerce.IoCContainer.csproj", "{12A68398-716D-46E4-9620-129CB40DA8E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.AuthServer", "Ecommerce.AuthServer\Ecommerce.AuthServer.csproj", "{173FDD17-0A2D-4424-89A8-F017C1FDA40B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{12A68398-716D-46E4-9620-129CB40DA8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12A68398-716D-46E4-9620-129CB40DA8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12A68398-716D-46E4-9620-129CB40DA8E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{173FDD17-0A2D-4424-89A8-F017C1FDA40B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{173FDD17-0A2D-4424-89A8-F017C1FDA40B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{173FDD17-0A2D-4424-89A8-F017C1FDA40B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{173FDD17-0A2D-4424-89A8-F017C1FDA40B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
