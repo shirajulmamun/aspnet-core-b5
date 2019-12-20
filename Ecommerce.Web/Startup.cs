@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using EcommerceApp.DatabaseContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +36,8 @@ namespace Ecommerce.Web
 
             services.AddDbContext<EcommerceDbContext>(opts =>
                 opts.UseSqlServer(Configuration.GetConnectionString("AppConnectionString")));
+
+            services.AddAutoMapper(typeof(Startup));
             IoCContainer.IoCConfiguration.Configure(services);
             services.AddMvc()
                 .AddMvcOptions(option =>

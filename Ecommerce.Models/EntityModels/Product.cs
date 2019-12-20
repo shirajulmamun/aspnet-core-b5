@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 
@@ -11,7 +12,7 @@ namespace Ecommerce.Models.EntityModels
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Please provide name!")]
+        [Required]
         public string Name { get; set; }
 
         [StringLength(11)]
@@ -28,5 +29,7 @@ namespace Ecommerce.Models.EntityModels
         public int? DeletedById { get; set; }
         public DateTime? DeletedOn { get; set; }
         public string DeleteRemarks { get; set; }
+
+       
     }
 }

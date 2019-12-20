@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using Ecommerce.BLL.Abstractions.Contracts;
 
 using Ecommerce.Models.DTO;
 using Ecommerce.Models.EntityModels;
+using Ecommerce.Models.ViewModels.Web.Product;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Internal;
@@ -15,11 +17,13 @@ namespace Ecommerce.Web.Controllers
     {
         IProductManager _productManager;
         IShopManager _shopManager;
+        IMapper _mapper;
 
-        public ProductsController(IProductManager productManager,IShopManager shopManager)
+        public ProductsController(IProductManager productManager,IShopManager shopManager,IMapper mapper)
         {
             _productManager = productManager;
             _shopManager = shopManager;
+            _mapper = mapper;
         }
         public string List(ProductSearchCriteriaDTO model)
         {
@@ -65,10 +69,13 @@ namespace Ecommerce.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Product product)
+        public IActionResult Create(ProductCreateVM model)
         {
             if (ModelState.IsValid)
             {
+
+                var product = _mapper.Map<Product>(model);
+
                bool isSaved =  _productManager.Add(product);               
                 if (isSaved)
                 {
