@@ -56,6 +56,8 @@ namespace Ecommerce.Web
                    option.ResponseType = "code id_token";
                    option.SignInScheme = "Cookies";
                    option.SaveTokens = true;
+                   option.GetClaimsFromUserInfoEndpoint = true;
+
                });
             services.Configure<CookiePolicyOptions>(options =>
             {

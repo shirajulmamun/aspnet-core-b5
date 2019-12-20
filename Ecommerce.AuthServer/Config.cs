@@ -65,7 +65,7 @@ namespace Ecommerce.AuthServer
                         },
 
 
-                    AllowedGrantTypes = GrantTypes.Hybrid,   
+                    AllowedGrantTypes = GrantTypes.Hybrid,
                     RedirectUris = new List<string>()
                     {
                         "https://localhost:44397/signin-oidc"
@@ -77,7 +77,8 @@ namespace Ecommerce.AuthServer
                     {
                         StandardScopes.OpenId,
                         StandardScopes.Profile
-                    }
+                    },
+                    //AlwaysIncludeUserClaimsInIdToken = true
                 }
             };
 
