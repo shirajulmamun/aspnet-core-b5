@@ -58,12 +58,34 @@ namespace Ecommerce.Auth
                       AllowedScopes =
                     {
                         StandardScopes.OpenId,
-                        StandardScopes.Profile
+                        StandardScopes.Profile,
+                        "ecommerce_api"
                     },
+                },
+
+                new Client()
+                {
+                    ClientId = "api",
+                    ClientSecrets= new List<Secret>()
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                    AllowedGrantTypes = IdentityServer4.Models.GrantTypes.ClientCredentials,
+                    AllowedScopes =
+                    {
+                      "ecommerce_api"
+                    }
                 }
 
             };
 
+        }
+
+        public static List<ApiResource> GetApiResources()
+        {
+            return new List<ApiResource>(){
+                new ApiResource("ecommerce_api","Ecommerce API")
+            };
         }
     }
 }

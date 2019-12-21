@@ -19,7 +19,8 @@ namespace Ecommerce.Auth
                 .AddDeveloperSigningCredential()
                 .AddTestUsers(Config.GetUsers())
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddInMemoryClients(Config.GetClients());
+                .AddInMemoryClients(Config.GetClients())
+                .AddInMemoryApiResources(Config.GetApiResources());
 
             services.AddMvc();
         }

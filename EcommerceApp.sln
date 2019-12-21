@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.DatabaseContext",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.IoCContainer", "Ecommerce.IoCContainer\Ecommerce.IoCContainer.csproj", "{12A68398-716D-46E4-9620-129CB40DA8E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Auth", "Ecommerce.Auth\Ecommerce.Auth.csproj", "{B0259B29-CAEA-42B7-86CC-C47E9A9C26F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.Auth", "Ecommerce.Auth\Ecommerce.Auth.csproj", "{B0259B29-CAEA-42B7-86CC-C47E9A9C26F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.API", "Ecommerce.API\Ecommerce.API.csproj", "{84FCC029-C009-4567-8E22-7BE7E15B3564}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{B0259B29-CAEA-42B7-86CC-C47E9A9C26F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0259B29-CAEA-42B7-86CC-C47E9A9C26F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0259B29-CAEA-42B7-86CC-C47E9A9C26F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84FCC029-C009-4567-8E22-7BE7E15B3564}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84FCC029-C009-4567-8E22-7BE7E15B3564}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84FCC029-C009-4567-8E22-7BE7E15B3564}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84FCC029-C009-4567-8E22-7BE7E15B3564}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
