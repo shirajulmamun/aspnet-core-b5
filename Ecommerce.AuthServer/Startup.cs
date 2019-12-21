@@ -21,7 +21,9 @@ namespace Ecommerce.AuthServer
                 .AddDeveloperSigningCredential()
                 .AddTestUsers(Config.Users())
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddInMemoryClients(Config.GetClients());
+                .AddInMemoryClients(Config.GetClients())
+                .AddInMemoryApiResources(Config.GetApiResources());
+            
             //services.AddAuthentication("Cookies")
             //             .AddCookie("Cookies");
 

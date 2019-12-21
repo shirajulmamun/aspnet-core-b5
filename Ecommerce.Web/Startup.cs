@@ -55,7 +55,7 @@ namespace Ecommerce.Web
                    option.RequireHttpsMetadata = true;
                    option.ResponseType = "code id_token";
                    option.SignInScheme = "Cookies";
-                   option.SaveTokens = true;
+                   option.SaveTokens = true;                   
                    option.GetClaimsFromUserInfoEndpoint = true;
 
                });

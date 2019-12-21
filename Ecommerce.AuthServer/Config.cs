@@ -25,7 +25,8 @@ namespace Ecommerce.AuthServer
                     Claims = new List<Claim>
                     {
                         new Claim("given_name", "Shirajul"),
-                        new Claim("family_name","Mamun")
+                        new Claim("family_name","Mamun"),
+                        new Claim("address", "Dhaka")
                     }
                 },
                 new TestUser()
@@ -47,7 +48,8 @@ namespace Ecommerce.AuthServer
             return new List<IdentityResource>()
             {
                 new IdentityResources.OpenId(),
-                new IdentityResources.Profile()
+                new IdentityResources.Profile(),
+                new IdentityResources.Address()
             };
         }
 
@@ -76,12 +78,33 @@ namespace Ecommerce.AuthServer
                     AllowedScopes =
                     {
                         StandardScopes.OpenId,
-                        StandardScopes.Profile
+                        StandardScopes.Profile,
+                        StandardScopes.Address
                     },
                     //AlwaysIncludeUserClaimsInIdToken = true
+                },
+                new Client()
+                {
+                    ClientId = "api",
+                    ClientSecrets = new List<Secret>()
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                    AllowedScopes = {"ecommerce_api"},
+                    AllowedGrantTypes=GrantTypes.ClientCredentials
+
                 }
             };
 
+        }
+
+        public static IEnumerable<ApiResource> GetApiResources()
+        {
+            return new List<ApiResource>()
+            {
+                new ApiResource("ecommerce_api","Ecommerce API")
+               
+            };
         }
     }
 }
